@@ -1,0 +1,24 @@
+<% layout("/layout/boilerplate")%>
+
+    <h1><%=campground.title%></h1>
+    <h3>Location:<%=campground.location%></h3>
+    <div class="container">
+        <div class="col-md-4 px-0">
+            <img src="<%=campground.image%>"  class="img-fluid">
+        </div>
+    </div>
+    <h6>description:<%=campground.description%></h6>
+    <h6>price:<%=campground.price%></h6>
+    <footer>
+        <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+            <button>delete</button>
+        </form>
+        <p>
+            <a href="/campgrounds">BackToAllCampground</a>
+        </p>
+        <p>
+            <a href="/campgrounds/<%=campground._id%>/edit">Edit Campground</a>
+        </p>
+
+    </footer>
+    
