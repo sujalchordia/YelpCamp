@@ -37,6 +37,7 @@ app.listen(3000,()=>{
 app.get("/campgrounds/new",catchAsync(async (req,res)=>{
     res.render("campgrounds/new");
 }))
+
 app.post("/campgrounds",catchAsync(async (req,res)=>{
         const campground= new Campground(req.body);
         await campground.save();
@@ -58,6 +59,7 @@ app.put("/campgrounds/:id",validateSchema,catchAsync(async(req,res)=>{
     const campground= await Campground.findByIdAndUpdate(id,req.body);
     res.redirect("/campgrounds")
 }))
+
 app.get("/campgrounds",catchAsync(async (req,res)=>{
     const campgrounds=await Campground.find({});
 
@@ -69,12 +71,15 @@ app.delete("/campgrounds/:id",catchAsync(async(req,res)=>{
     await Campground.findByIdAndDelete(id);
     res.redirect("/campgrounds");
 }))
+
 app.get("/",(req,res)=>{
     res.render("home");
 })
+
 app.all("*",(req,res,next)=>{
     next(new ExpressError("PAGE NOT FOUND",404))
 })
+
 app.use((err,req,res,next)=>{
    const{statuscode=500}=err;
    if(!err.messsage) err.messsage="oh no something went wrong";
