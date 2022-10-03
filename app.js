@@ -17,8 +17,6 @@ app.set('views',path.join(__dirname,'views'))
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 
-
-//MIDDLEWARE FUNCTION
 const {campgroundSchema}=require("./seeds/SCHEMAS_JOI");
 const  validateSchema= (req,res,next)=>{
     const {error}= campgroundSchema.validate(req.body);
